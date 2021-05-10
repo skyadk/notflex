@@ -1,11 +1,16 @@
-FROM python:3.5
+FROM python:3.7-alpine
+
+RUN /usr/local/bin/python -m pip install --upgrade pip
 
 RUN pip3 install django
+
+RUN pip3 install --upgrade django
 
 WORKDIR /usr/src/app
 
 COPY . .
 
-CMD ["python", "manage.py", "runserver"]
-
 EXPOSE 8000
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
