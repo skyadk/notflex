@@ -6,6 +6,6 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-CMD ["python3", "manage.py", "runserver", "0:8000"]
+CMD ["python", "manage.py", "runserver"]
 
 EXPOSE 8000
