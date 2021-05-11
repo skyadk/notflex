@@ -7,7 +7,13 @@
       </div>
       <div class="main-content">
         <div class="login-content">
-          <h1 class="login-page-title">로그인</h1>
+          <h1 class="login-page-title">회원가입</h1>
+          <div>
+            <v-text-field class="login-input" v-model="name" label="이름을 입력하세요" hint="이름을 확인하세요" :rules="[rules_name.required]"></v-text-field>
+          </div>
+          <div>
+            <v-text-field class="login-input" v-model="nickname" label="닉네입을 입력하세요" hint="닉네임을 확인하세요" :rules="[rules_nickname.required]"></v-text-field>
+          </div>
           <div>
             <v-text-field
               class="login-input"
@@ -32,13 +38,25 @@
               @click:append="show1 = !show1"
             ></v-text-field>
           </div>
-          <button class="login-button">로그인</button>
+          <div>
+            <v-text-field
+              class="login-input"
+              v-model="passwordconfirm"
+              :rules="[rules_password.required, rules_password.min]"
+              :type="show1 ? 'text' : 'password'"
+              name="input-10-1"
+              label="비밀번호를 확인"
+              hint="비밀번호를 확인하세요"
+              @click:append="show1 = !show1"
+            ></v-text-field>
+          </div>
+          <button class="login-button">회원가입</button>
           <div class="login-other">
             <div class="login-other-content1">
-              Notflex 회원이 아니신가요?
+              Notflex 회원이 이신가요?
             </div>
-            <div type="button" class="login-other-content2" @click="signup">
-              지금 가입하세요
+            <div type="button" class="login-other-content2" @click="login">
+              지금 로그인하세요
             </div>
           </div>
         </div>
@@ -53,7 +71,12 @@ export default {
     return {
       email: '',
       password: '',
+      passwordconfirm: '',
+      name: '',
+      nickname: '',
       show1: false,
+      rules_name: { required: (value) => !!value || '잘못된 입력입니다.' },
+      rules_nickname: { required: (value) => !!value || '잘못된 입력입니다.' },
       rules_email: {
         required: (value) => !!value || '잘못된 입력입니다.',
         emailMatch: () => `The email and password you entered don't match`,
@@ -73,26 +96,55 @@ export default {
     logo() {
       this.$router.push('/');
     },
-    signup() {
-      this.$router.push('/signup');
+    login() {
+      this.$router.push('/login');
     },
-    async Login() {
+    async signup() {
       if (this.email == null) {
         this.$swal({
           icon: 'error',
-          title: '아이디를 입력해 주세요!',
+          title: '이메일을 입력해주세요!',
         });
       } else if (this.password == null) {
         this.$swal({
           icon: 'error',
-          title: '비밀번호를 입력해 주세요!',
+          title: '비밀번호를 입력해주세요!',
+        });
+      } else if (this.passwordconfirm == null) {
+        this.$swal({
+          icon: 'error',
+          title: '비밀번호 확인란을 입력해주세요!',
+        });
+      } else if (this.passwordconfirm != this.password) {
+        this.$swal({
+          icon: 'error',
+          title: '비밀번호가 일지하지 않습니다.',
         });
       } else {
         const userData = {
           email: this.email,
           password: this.password,
         };
-        this.$store.dispatch('LOGIN', userData);
+
+        console.log(userData);
+
+        // const { data } = await register(userData);
+
+        // if (data == 'SUCCESS') {
+        //   this.$swal({
+        //     position: 'top-end',
+        //     icon: 'success',
+        //     title: '회원가입성공!!',
+        //     showConfirmButton: false,
+        //     timer: 1500,
+        //   });
+        //   this.$router.push('/main');
+        // } else {
+        //   this.$swal({
+        //     icon: 'error',
+        //     title: '회원가입 실패 관리자에게 문의해주세요',
+        //   });
+        // }
       }
     },
   },
