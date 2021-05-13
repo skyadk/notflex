@@ -43,8 +43,8 @@ class Movie_genre_list(models.Model):
         return self.id
 
 class View(models.Model):
-    uid = models.ForeignKey("user", related_name="user", on_delete=models.CASCADE, db_column="user_id")
-    mid = models.ForeignKey("Movie", related_name="movie2", on_delete=models.CASCADE, db_column="movie_id")
+    uid = models.ForeignKey("User", related_name="user", on_delete=models.CASCADE, db_column="uid")
+    mid = models.ForeignKey("Movie", related_name="movie2", on_delete=models.CASCADE, db_column="mid")
     point = models.IntegerField()
     review = models.TextField()
     
