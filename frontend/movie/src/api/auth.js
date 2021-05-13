@@ -4,13 +4,10 @@ import { instance, posts } from './index';
 function loginUser(userData) {
   return instance.post('get_user/', userData);
 }
-// 사용자정보조회
-function fetchUser() {
-  return posts.get(``);
-}
+
 //회원가입
 function register(userData) {
-  return instance.post('', userData);
+  return instance.post('join_user/', userData);
 }
 //정보수정
 function editUser(userData) {
@@ -21,4 +18,4 @@ function signout() {
   return posts.delete(`/'`);
 }
 
-export { loginUser, fetchUser, register, editUser, signout };
+export { loginUser, register, editUser, signout };
