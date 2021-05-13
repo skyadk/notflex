@@ -32,7 +32,7 @@
               @click:append="show1 = !show1"
             ></v-text-field>
           </div>
-          <button class="login-button">로그인</button>
+          <button class="login-button" @click="Login">로그인</button>
           <div class="login-other">
             <div class="login-other-content1">
               Notflex 회원이 아니신가요?
@@ -188,11 +188,8 @@ export default {
 .v-text-field {
   padding-top: 20px !important ;
 }
-#input-7,
-#input-10,
-#input-26,
-#input-19 {
-  color: #fff;
+.theme--light.v-input input {
+  color: #fff !important;
 }
 .v-label {
   color: #8c8c8c !important;

@@ -3,13 +3,13 @@
     <div class="back">
       <div class="main-nav">
         <img type="button" class="logo" src="@/assets/logo.png" alt="" @click="logo" />
-        <div type="button" class="a-tag">로그인</div>
+        <div type="button" class="a-tag" @click="login">로그인</div>
       </div>
       <div class="main-content">
         <div class="login-content">
           <h1 class="login-page-title">회원가입</h1>
           <div>
-            <v-text-field class="login-input" v-model="name" label="이름을 입력하세요" hint="이름을 확인하세요" :rules="[rules_name.required]"></v-text-field>
+            <v-text-field class="login-input" v-model="nickname" label="닉네임을 입력하세요" hint="이름을 확인하세요" :rules="[rules_nickname.required]"></v-text-field>
           </div>
           <div>
             <v-text-field
@@ -50,7 +50,7 @@
           <div>
             <v-select :items="items" label="선호 장르" class="login-input" v-model="genre"></v-select>
           </div>
-          <button class="login-button">회원가입</button>
+          <button class="login-button" @click="signup">회원가입</button>
           <div class="login-other">
             <div class="login-other-content1">
               Notflex 회원이 이신가요?
@@ -66,6 +66,8 @@
 </template>
 
 <script>
+import { register } from '@/api/auth';
+
 export default {
   data() {
     return {
@@ -90,7 +92,7 @@ export default {
         min: (v) => v.length >= 8 || 'Min 8 characters',
         emailMatch: () => `The email and password you entered don't match`,
       },
-      items: ['공포', '액션', '로맨스', '...'],
+      items: ['공포', '액션', '로맨스', '모험', '스릴러', '공포', '판타지', '애니메이션', '기타'],
     };
   },
   methods: {
@@ -124,30 +126,30 @@ export default {
       } else {
         const userData = {
           email: this.email,
-          password: this.password,
+          pw: this.password,
           nickname: this.nickname,
-          genre: this.genre,
+          preferGenre: this.genre,
         };
 
         console.log(userData);
 
-        // const { data } = await register(userData);
+        const data = await register(userData);
 
-        // if (data == 'SUCCESS') {
-        //   this.$swal({
-        //     position: 'top-end',
-        //     icon: 'success',
-        //     title: '회원가입성공!!',
-        //     showConfirmButton: false,
-        //     timer: 1500,
-        //   });
-        //   this.$router.push('/');
-        // } else {
-        //   this.$swal({
-        //     icon: 'error',
-        //     title: '회원가입 실패 관리자에게 문의해주세요',
-        //   });
-        // }
+        if (data == 'message') {
+          this.$swal({
+            position: 'top-end',
+            icon: 'success',
+            title: '회원가입성공!!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.$router.push('/');
+        } else {
+          this.$swal({
+            icon: 'error',
+            title: '회원가입 실패 관리자에게 문의해주세요',
+          });
+        }
       }
     },
   },
@@ -243,11 +245,8 @@ export default {
 .v-text-field {
   padding-top: 20px !important ;
 }
-#input-7,
-#input-10,
-#input-13,
-#input-16 {
-  color: #fff;
+.theme--light.v-input input {
+  color: #fff !important;
 }
 .v-label {
   color: #8c8c8c !important;
