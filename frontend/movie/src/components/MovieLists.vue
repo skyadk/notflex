@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex flex-wrap" v-if="movieList">
+  <div class="d-flex flex-wrap movielist" v-if="movieList">
     <div class="movie-card" style="width:125px;" v-for="li in movieList" :key="li.id">
       <div @click="goDetail(li.id)" v-if="li">
         <img style="width:125px; height:180px;" v-if="li.poster_path" fluid :src="image(li.poster_path)" alt="Image 2" />
@@ -34,10 +34,38 @@ export default {
 </script>
 
 <style scoped>
+.movielist {
+  /* justify-content: space-between; */
+  margin-left: 2%;
+}
 .movie-title {
   color: #fff;
 }
 .movie-date {
   color: #fff;
+}
+
+.movie-card {
+  margin: 12px;
+  width: 125px;
+  font-size: 12px;
+  font-weight: 400;
+}
+.movie-card:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+.movie-card > img {
+  height: 180px;
+  border-radius: 8px;
+}
+.movie-information {
+  margin-top: 7px;
+}
+
+.movie-date {
+  font-size: 10px;
+  margin-top: 5px;
+  color: #cccccc;
 }
 </style>
