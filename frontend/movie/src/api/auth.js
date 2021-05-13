@@ -2,10 +2,10 @@ import { instance, posts } from './index';
 
 // 로그인
 function loginUser(userData) {
-  return instance.post('', userData);
+  return instance.post('get_user/', userData);
 }
 // 사용자정보조회
-function fetchUser(email) {
+function fetchUser() {
   return posts.get(``);
 }
 //회원가입
@@ -17,7 +17,7 @@ function editUser(userData) {
   return posts.put(``, userData);
 }
 //회원탈퇴
-function signout(email) {
+function signout() {
   return posts.delete(`/'`);
 }
 
