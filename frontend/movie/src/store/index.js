@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
-import { loginUser } from '@/api/auth';
-import router from '../router/index';
+// import { loginUser, fetchUser } from '@/api/auth';
+// import router from '../router/index';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -12,8 +12,6 @@ export default new Vuex.Store({
     email: '',
     password: '',
     uuid: '',
-    nickname: '',
-    preferGenre: '',
     nowPlaying: [],
     popular: [],
     upComing: [],
@@ -50,18 +48,6 @@ export default new Vuex.Store({
     clearUuid(state) {
       state.uuid = '';
     },
-    setNickname(state, nickname) {
-      state.nickname = nickname;
-    },
-    clearNickname(state) {
-      state.nickname = '';
-    },
-    setPreferGenre(state, preferGenre) {
-      state.preferGenre = preferGenre;
-    },
-    clearsetPreferGenre(state) {
-      state.preferGenre = '';
-    },
     SET_LOADING(state, data) {
       state.loading = data;
     },
@@ -77,22 +63,20 @@ export default new Vuex.Store({
   },
 
   actions: {
-    async LOGIN({ commit }, userData) {
-      const data = await loginUser(userData.email);
-      console.log(data);
-      if (data.password == userData.password) {
-        commit('setEmail', data.email);
-        commit('setPassword', data.pw);
-        commit('setUuid', data.id);
-        commit('setNickname', data.nickname);
-        commit('setPreferGenre', data.preferGenre);
-        router.push('/');
-      } else {
-        Vue.swal({
-          icon: 'error',
-          title: '로그인 실패! 이메일 및 비밀번호를 확인해 주세요!',
-        });
-      }
-    },
+    // async LOGIN({ commit }, userData) {
+    // const data = await loginUser(userData);
+    // console.log(data);
+    // if (data.data.message == 'SUCCESS') {
+    //   commit('setToken', data.data['access-token']);
+    //   commit('setEmail', userData.email);
+    //   commit('setPassword', userData.password);
+    //   commit('setUuid', response.data.uuid);
+    //   router.push('/main');
+    // } else {
+    //   Vue.swal({
+    //     icon: 'error',
+    //     title: '로그인 실패! 이메일 및 비밀번호를 확인해 주세요!',
+    //   });
+    // },
   },
 });

@@ -5,7 +5,6 @@ const request = axios.create({
   params: {
     api_key: 'f94636236a5281b479b586305b900f48',
     language: 'ko-KR',
-    page: 1,
   },
 });
 // https://image.tmdb.org/t/p/w300/ApiBzeaa95TNYliSbQ8pJv4Fje7.jpg
@@ -25,5 +24,4 @@ export const movieApi = {
         query: keyword,
       },
     }),
-  topRating: () => request.get('/movie/top_rated'),
 };

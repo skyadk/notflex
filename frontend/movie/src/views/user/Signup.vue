@@ -12,6 +12,9 @@
             <v-text-field class="login-input" v-model="name" label="이름을 입력하세요" hint="이름을 확인하세요" :rules="[rules_name.required]"></v-text-field>
           </div>
           <div>
+            <v-text-field class="login-input" v-model="nickname" label="닉네입을 입력하세요" hint="닉네임을 확인하세요" :rules="[rules_nickname.required]"></v-text-field>
+          </div>
+          <div>
             <v-text-field
               class="login-input"
               v-model="email"
@@ -47,9 +50,6 @@
               @click:append="show1 = !show1"
             ></v-text-field>
           </div>
-          <div>
-            <v-select :items="items" label="선호 장르" class="login-input" v-model="genre"></v-select>
-          </div>
           <button class="login-button">회원가입</button>
           <div class="login-other">
             <div class="login-other-content1">
@@ -72,8 +72,8 @@ export default {
       email: '',
       password: '',
       passwordconfirm: '',
+      name: '',
       nickname: '',
-      genre: '',
       show1: false,
       rules_name: { required: (value) => !!value || '잘못된 입력입니다.' },
       rules_nickname: { required: (value) => !!value || '잘못된 입력입니다.' },
@@ -90,7 +90,6 @@ export default {
         min: (v) => v.length >= 8 || 'Min 8 characters',
         emailMatch: () => `The email and password you entered don't match`,
       },
-      items: ['공포', '액션', '로맨스', '...'],
     };
   },
   methods: {
@@ -125,8 +124,6 @@ export default {
         const userData = {
           email: this.email,
           password: this.password,
-          nickname: this.nickname,
-          genre: this.genre,
         };
 
         console.log(userData);
@@ -141,7 +138,7 @@ export default {
         //     showConfirmButton: false,
         //     timer: 1500,
         //   });
-        //   this.$router.push('/');
+        //   this.$router.push('/main');
         // } else {
         //   this.$swal({
         //     icon: 'error',
@@ -244,9 +241,7 @@ export default {
   padding-top: 20px !important ;
 }
 #input-7,
-#input-10,
-#input-13,
-#input-16 {
+#input-10 {
   color: #fff;
 }
 .v-label {
@@ -262,8 +257,5 @@ export default {
 .login-other-content2 {
   color: #fff;
   font-weight: 300;
-}
-.v-select__selection--comma {
-  color: #fff;
 }
 </style>

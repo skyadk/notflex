@@ -1,5 +1,5 @@
 <template>
-  <div class="h4 ml-3 pt-3 mb-4 text">{{ text }}</div>
+  <div class="h4 ml-3 mt-5 mb-4 text">{{ text }}</div>
 </template>
 
 <script>

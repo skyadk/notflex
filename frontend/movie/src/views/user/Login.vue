@@ -189,9 +189,7 @@ export default {
   padding-top: 20px !important ;
 }
 #input-7,
-#input-10,
-#input-26,
-#input-19 {
+#input-10 {
   color: #fff;
 }
 .v-label {
