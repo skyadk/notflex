@@ -25,7 +25,7 @@ SECRET_KEY = 'r756k&yivq$^)5&o0zzv!859ssm)uw&)$@64f@a7+3j^sj^h28'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','k4d108.p.ssafy.io']
 
 
 # Application definition
@@ -41,13 +41,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'movies',
 
-    # django cors
-    #'corsheaders',
+    #django cors
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     # django cors middleware setting
-    #'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -59,9 +59,10 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8000',
     'http://localhost:8080',
-    #'http://i4d108.p.ssafy.io',
-    #'http://i4d108.p.ssafy.io:8080',
+    'http://k4d108.p.ssafy.io',
+    'http://i4d108.p.ssafy.io:8080',
 ]
 
 ROOT_URLCONF = 'backend.urls'

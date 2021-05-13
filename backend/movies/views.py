@@ -63,7 +63,7 @@ def join_user(request):
         ).save()
         return HttpResponse({"message" : "JOIN_COMPLETED"},status=200)
     except KeyError:
-        return JsonResponse({"message" : "INVALID_KEYS"},status=400)
+        return JsonResponse({"message" : "JOIN_FAILED"},status=400)
 
 @api_view(['POST'])
 def get_user_id(request):
