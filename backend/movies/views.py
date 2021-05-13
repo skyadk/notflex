@@ -43,3 +43,7 @@ def get_user_id(request):
     user = get_object_or_404(get_user_model(), id=request.data.get('id'))
     serializer = GetUserSerializer(user)
     return Response(serializer.data)    
+
+@api_view(['GET'])
+def my_view_list(request, user_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
