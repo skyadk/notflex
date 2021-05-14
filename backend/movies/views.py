@@ -53,7 +53,6 @@ def join_user(request):
         #전처리 한번 필요
         
         curr_max_num = User.objects.all().count() + 949437
-        print(curr_max_num)
         User.objects.create(
             #num = curr_max_num,
             email = request.POST["email"],
@@ -61,7 +60,15 @@ def join_user(request):
             nickname = request.POST["nickname"],
             preferGenre = request.POST["preferGenre"]
         ).save()
-        return HttpResponse({"message" : "JOIN_COMPLETED"},status=200)
+
+        data = {
+            'email' : request.POST["email"],
+            'pw' : request.POST["pw"],
+            'nickname' : request.POST["nickname"],
+            'preferGenre' : request.POST["preferGenre"]
+        }
+        dump = json.dumps(data)
+        return HttpResponse(dump, content_type='application/json',status=200)
     except KeyError:
         return JsonResponse({"message" : "JOIN_FAILED"},status=400)
 
