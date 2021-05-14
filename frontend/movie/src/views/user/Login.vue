@@ -76,7 +76,7 @@ export default {
     signup() {
       this.$router.push('/signup');
     },
-    async Login() {
+    Login() {
       if (this.email == null) {
         this.$swal({
           icon: 'error',

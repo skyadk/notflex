@@ -132,8 +132,8 @@ export default {
         };
 
         console.log(userData);
-
         const data = await register(userData);
+        console.log(data);
 
         if (data == 'message') {
           this.$swal({

@@ -81,9 +81,9 @@ export default new Vuex.Store({
       const userdataemail = {
         email: userData.email,
       };
-      const data = await loginUser(userdataemail);
+      const { data } = await loginUser(userdataemail);
       console.log(data);
-      if (data.password == userData.password) {
+      if (data.pw == userData.password) {
         commit('setEmail', data.email);
         commit('setPassword', data.pw);
         commit('setUuid', data.id);
