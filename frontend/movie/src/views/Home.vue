@@ -3,7 +3,7 @@
     <div class="main-back">
       <div class="back">
         <div class="main-nav">
-          <img type="button" class="logo" src="@/assets/logo.png" alt="" @click="logo" />
+          <img class="logo" src="@/assets/logo.png" alt="" />
           <div type="button" class="a-tag" @click="login">로그인</div>
         </div>
         <div class="main-content">
@@ -14,8 +14,8 @@
             다양한 디바이스에서 시청하세요. 언제든 해지하실 수 있습니다.
           </h2>
           <div class="search">
-            <input class="search-input" type="text" placeholder="입력하세요" />
-            <button class="search-btn">검색하기</button>
+            <input class="search-input" type="text" placeholder="영화 제목을 입력하세요" v-model="keyword" />
+            <button class="search-btn" @click="onSearch">검색하기</button>
           </div>
         </div>
       </div>
@@ -24,15 +24,30 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'Home',
   components: {},
+  data() {
+    return {
+      keyword: '',
+    };
+  },
   methods: {
+    ...mapMutations(['SET_LOADING']),
     login() {
       this.$router.push('/login');
     },
-    logo() {
-      this.$router.push('/home');
+    async onSearch() {
+      if (!this.keyword) {
+        alert('영화 제목을 입력하세요!');
+        this.keyword = '';
+        return;
+      } else {
+        this.$router.push({ name: 'Search', query: { keyword: this.keyword } });
+        this.keyword = '';
+      }
     },
   },
 };
