@@ -14,24 +14,36 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='View',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('point', models.IntegerField()),
                 ('review', models.TextField()),
-                ('mid', models.ForeignKey(db_column='mid', on_delete=django.db.models.deletion.CASCADE, related_name='movie2', to='movies.Movie')),
-                ('uid', models.ForeignKey(db_column='uid', on_delete=django.db.models.deletion.CASCADE, related_name='user', to='movies.User')),
+                ('mid', models.ForeignKey(db_column='mid', on_delete=django.db.models.deletion.CASCADE,
+                                          related_name='movie2', to='movies.Movie')),
+                ('uid', models.ForeignKey(db_column='uid',
+                                          on_delete=django.db.models.deletion.CASCADE, related_name='user', to='movies.User')),
             ],
         ),
         migrations.CreateModel(
             name='Movie_genre_list',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('genre_id', models.ForeignKey(db_column='genre_id', on_delete=django.db.models.deletion.CASCADE, related_name='genre', to='movies.Genre')),
-                ('movie_id', models.ForeignKey(db_column='movie_id', on_delete=django.db.models.deletion.CASCADE, related_name='movie1', to='movies.Movie')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('genre_id', models.ForeignKey(db_column='genre_id',
+                                               on_delete=django.db.models.deletion.CASCADE, related_name='genre', to='movies.Genre')),
+                ('movie_id', models.ForeignKey(db_column='movie_id',
+                                               on_delete=django.db.models.deletion.CASCADE, related_name='movie1', to='movies.Movie')),
             ],
         ),
-        migrations.AlterField(
+        migrations.RemoveField(
             model_name='movie',
             name='genres',
-            field=models.ManyToManyField(through='movies.Movie_genre_list', to='movies.Genre'),
+        ),
+        # 해당컬럼을 한번 지워주고
+        migrations.AddField(
+            model_name='movie',
+            name='genres',
+            field=models.ManyToManyField(
+                through='movies.Movie_genre_list', to='movies.Genre'),
         ),
     ]
