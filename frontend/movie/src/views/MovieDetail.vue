@@ -98,6 +98,7 @@ export default {
   /* z-index: 99; */
   position: relative;
   padding: 40px 40px;
+  margin-top: 5%;
 }
 
 .movie-detail-image {
