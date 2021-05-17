@@ -3,8 +3,12 @@
     <div class="main-back">
       <div class="back">
         <div class="main-nav">
-          <img type="button" class="logo" src="@/assets/logo.png" alt="" @click="logo" />
-          <div type="button" class="a-tag" @click="login">로그인</div>
+          <img class="logo" src="@/assets/logo.png" alt="" />
+          <div class="d-flex">
+            <div type="button" class="a-tag mr-8" @click="movemain">영화 목록</div>
+            <div v-if="this.$store.state.email" type="button" class="a-tag" @click="logout">로그아웃</div>
+            <div v-else type="button" class="a-tag" @click="login">로그인</div>
+          </div>
         </div>
         <div class="main-content">
           <h1 class="content1">
@@ -14,8 +18,8 @@
             다양한 디바이스에서 시청하세요. 언제든 해지하실 수 있습니다.
           </h2>
           <div class="search">
-            <input class="search-input" type="text" placeholder="입력하세요" />
-            <button class="search-btn">검색하기</button>
+            <input class="search-input" type="text" placeholder="영화 제목을 입력하세요" v-model="keyword" />
+            <button class="search-btn" @click="onSearch">검색하기</button>
           </div>
         </div>
       </div>
@@ -24,15 +28,42 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'Home',
   components: {},
+  data() {
+    return {
+      keyword: '',
+    };
+  },
   methods: {
+    ...mapMutations(['SET_LOADING']),
     login() {
       this.$router.push('/login');
     },
-    logo() {
-      this.$router.push('/home');
+    logout() {
+      this.$store.commit('clearEmail');
+      this.$store.commit('clearPassword');
+      this.$store.commit('clearNickname');
+      this.$store.commit('clearPreferGenre');
+
+      localStorage.clear();
+      sessionStorage.clear();
+    },
+    movemain() {
+      this.$router.push('/main');
+    },
+    async onSearch() {
+      if (!this.keyword) {
+        alert('영화 제목을 입력하세요!');
+        this.keyword = '';
+        return;
+      } else {
+        this.$router.push({ name: 'Search', query: { keyword: this.keyword } });
+        this.keyword = '';
+      }
     },
   },
 };
