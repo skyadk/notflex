@@ -29,7 +29,7 @@ def moive_detail(request, movie_pk):
 def userid_check(request):
     email = request.data.get('email')
     # print(email)
-    movieInfo()
+    # movieInfo()
     
     if email == None or User.objects.filter(email=email).exists():
         return Response({'fail'})
