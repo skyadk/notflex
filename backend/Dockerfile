@@ -8,6 +8,8 @@ RUN pip3 install --upgrade django
 
 RUN pip install drf_yasg
 
+RUN pip install django-cors-headers
+
 WORKDIR /usr/src/app
 
 COPY . .
