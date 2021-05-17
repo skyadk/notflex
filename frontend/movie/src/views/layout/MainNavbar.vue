@@ -5,11 +5,14 @@
       <nav>
         <ul class="nav__links">
           <li><a href="/">검색하기</a></li>
-          <li><a href="#">추천영화</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="/recommended">추천영화</a></li>
+          <li>
+            <a href="/profile">{{ this.$store.state.nickname }}</a>
+          </li>
         </ul>
       </nav>
-      <a class="cta" href="#">{{ this.$store.state.nickname }}</a>
+
+      <div type="button" class="a-tag mr-8" @click="logout">로그아웃</div>
     </header>
   </div>
 </template>
@@ -18,17 +21,17 @@
 export default {
   components: {},
   methods: {
-    // logout() {
-    //   this.$store.commit('clearEmail');
-    //   this.$store.commit('clearToken');
-    //   this.$store.commit('clearType');
-    //   this.$store.commit('clearPassword');
-    //   this.$store.commit('clearNickname');
-    //   this.$store.commit('clearUuid');
-    //   localStorage.clear();
-    //   sessionStorage.clear();
-    //   this.$router.push({ name: 'Sign-In-Up' });
-    // },
+    logout() {
+      this.$store.commit('clearEmail');
+      this.$store.commit('clearToken');
+      this.$store.commit('clearType');
+      this.$store.commit('clearPassword');
+      this.$store.commit('clearNickname');
+      this.$store.commit('clearUuid');
+      localStorage.clear();
+      sessionStorage.clear();
+      this.$router.push({ name: 'Sign-In-Up' });
+    },
   },
 };
 </script>
@@ -40,6 +43,9 @@ export default {
   padding: 0;
 }
 
+#nav {
+  z-index: 99;
+}
 header {
   display: flex;
   width: 100%;
@@ -166,5 +172,14 @@ header {
   .menu {
     display: initial;
   }
+}
+.a-tag {
+  background-color: #e50914;
+  line-height: normal;
+  padding: 7px 17px;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 0.3rem;
 }
 </style>

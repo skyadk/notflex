@@ -44,12 +44,6 @@ export default new Vuex.Store({
     clearPassword(state) {
       state.password = '';
     },
-    setUuid(state, uuid) {
-      state.uuid = uuid;
-    },
-    clearUuid(state) {
-      state.uuid = '';
-    },
     setNickname(state, nickname) {
       state.nickname = nickname;
     },
@@ -59,7 +53,7 @@ export default new Vuex.Store({
     setPreferGenre(state, preferGenre) {
       state.preferGenre = preferGenre;
     },
-    clearsetPreferGenre(state) {
+    clearPreferGenre(state) {
       state.preferGenre = '';
     },
     SET_LOADING(state, data) {

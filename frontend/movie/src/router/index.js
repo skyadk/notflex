@@ -17,27 +17,16 @@ const routes = [
     components: { default: () => import('../views/Main.vue'), header: () => import('../views/layout/MainNavbar.vue') },
     meta: { auth: false },
   },
-  // {
-  //   path: '/mainvuex',
-  //   name: 'Mainvuex',
-  //   component: () => import('../views/MainVuex.vue'),
-  // },
   {
     path: '/detail/:id',
     name: 'Detail',
-    component: () => import('../views/MovieDetail.vue'),
-    meta: { auth: false },
-  },
-  {
-    path: '/movielist',
-    name: 'MovieList',
-    component: () => import('../views/MovieList.vue'),
+    components: { default: () => import('../views/MovieDetail.vue'), header: () => import('../views/layout/MainNavbar.vue') },
     meta: { auth: false },
   },
   {
     path: '/search',
     name: 'Search',
-    component: () => import('../views/Search.vue'),
+    components: { default: () => import('../views/Search.vue'), header: () => import('../views/layout/MainNavbar.vue') },
     meta: { auth: false },
   },
   {
@@ -50,6 +39,16 @@ const routes = [
     path: '/signup',
     name: 'Signup',
     component: () => import('@/views/user/Signup.vue'),
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    components: { default: () => import('@/views/Profile.vue'), header: () => import('../views/layout/MainNavbar.vue') },
+  },
+  {
+    path: '/recommended',
+    name: 'Recommended',
+    components: { default: () => import('@/views/Recommended.vue'), header: () => import('../views/layout/MainNavbar.vue') },
   },
   {
     path: '*',

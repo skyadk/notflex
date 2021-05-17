@@ -10,11 +10,11 @@
         </v-carousel-item>
       </v-carousel>
       <div v-if="nowPlaying">
-        <MovieText :text="'상영중'"></MovieText>
+        <MovieText :text="'NowPlaying'"></MovieText>
         <MovieLists :movieList="nowPlaying"></MovieLists>
-        <MovieText :text="'인기작'"></MovieText>
+        <MovieText :text="'Popular'"></MovieText>
         <MovieLists :movieList="popular"></MovieLists>
-        <MovieText :text="'개봉예정작'"></MovieText>
+        <MovieText :text="'UpComming'"></MovieText>
         <MovieLists :movieList="upComming"></MovieLists>
       </div>
     </div>
@@ -103,8 +103,7 @@ export default {
   background-size: contain !important;
   margin-left: 15%;
 }
-.v-responsive__content {
-}
+
 .main-back {
   background: url(../assets/back.png) no-repeat;
   background-size: cover;
@@ -117,10 +116,9 @@ export default {
   background: rgba(0, 0, 0, 0.8);
   width: 100%;
   height: 100%;
-  margin-top: 5.5%;
 }
 .top {
-  margin-top: 5.5%;
+  margin-top: 5%;
   height: 100px;
 }
 .movie-card {
