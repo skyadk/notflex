@@ -10,5 +10,7 @@ urlpatterns = [
     path('my_view_list/<int:uid>/',views.my_view_list),
     path('join_user/',views.join_user),
     path('my_preferGenre_list/',views.my_preferGenre_list),
-    path('genre_recommend/',views.genre_recommend)
+    path('genre_recommend/',views.genre_recommend),
+    path('add_my_view_list/',views.add_my_view_list)
+
 ]

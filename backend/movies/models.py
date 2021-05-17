@@ -16,10 +16,10 @@ class Movie(models.Model):
     runtime = models.IntegerField()
     vote_average = models.IntegerField()
     overview = models.TextField()
-    genres = models.ManyToManyField(Genre, through= 'Movie_genre_list')
+    genres = models.ManyToManyField(Genre)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 class User(models.Model):
     email = models.EmailField(
@@ -32,7 +32,7 @@ class User(models.Model):
     preferGenre = models.CharField(max_length = 20)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 class Movie_genre_list(models.Model):
     movie_id = models.ForeignKey(Movie, related_name="movie1", on_delete=models.CASCADE, db_column="movie_id")
@@ -44,7 +44,7 @@ class Movie_genre_list(models.Model):
 
 class View(models.Model):
     uid = models.ForeignKey(User, related_name="user", on_delete=models.CASCADE, db_column="uid")
-    mid = models.ForeignKey(Movie, related_name="movie2", on_delete=models.CASCADE, db_column="mid")
+    mid = models.IntegerField()
     point = models.IntegerField()
     review = models.TextField()
     
