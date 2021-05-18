@@ -1,4 +1,4 @@
-import { instance, posts } from './index';
+import { instance } from './index';
 
 // 로그인
 function loginUser(userData) {
@@ -11,11 +11,11 @@ function register(userData) {
 }
 //정보수정
 function editUser(userData) {
-  return posts.put(``, userData);
+  return instance.put(``, userData);
 }
 //회원탈퇴
 function signout() {
-  return posts.delete(`/'`);
+  return instance.delete(`/'`);
 }
 
 export { loginUser, register, editUser, signout };
