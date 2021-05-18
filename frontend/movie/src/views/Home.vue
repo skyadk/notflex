@@ -4,7 +4,11 @@
       <div class="back">
         <div class="main-nav">
           <img class="logo" src="@/assets/logo.png" alt="" />
-          <div type="button" class="a-tag" @click="login">로그인</div>
+          <div class="d-flex">
+            <div type="button" class="a-tag mr-8" @click="movemain">영화 목록</div>
+            <div v-if="this.$store.state.email" type="button" class="a-tag" @click="logout">로그아웃</div>
+            <div v-else type="button" class="a-tag" @click="login">로그인</div>
+          </div>
         </div>
         <div class="main-content">
           <h1 class="content1">
@@ -38,6 +42,18 @@ export default {
     ...mapMutations(['SET_LOADING']),
     login() {
       this.$router.push('/login');
+    },
+    logout() {
+      this.$store.commit('clearEmail');
+      this.$store.commit('clearPassword');
+      this.$store.commit('clearNickname');
+      this.$store.commit('clearPreferGenre');
+
+      localStorage.clear();
+      sessionStorage.clear();
+    },
+    movemain() {
+      this.$router.push('/main');
     },
     async onSearch() {
       if (!this.keyword) {

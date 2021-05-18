@@ -44,12 +44,6 @@ export default new Vuex.Store({
     clearPassword(state) {
       state.password = '';
     },
-    setUuid(state, uuid) {
-      state.uuid = uuid;
-    },
-    clearUuid(state) {
-      state.uuid = '';
-    },
     setNickname(state, nickname) {
       state.nickname = nickname;
     },
@@ -59,7 +53,7 @@ export default new Vuex.Store({
     setPreferGenre(state, preferGenre) {
       state.preferGenre = preferGenre;
     },
-    clearsetPreferGenre(state) {
+    clearPreferGenre(state) {
       state.preferGenre = '';
     },
     SET_LOADING(state, data) {
@@ -81,9 +75,9 @@ export default new Vuex.Store({
       const userdataemail = {
         email: userData.email,
       };
-      const data = await loginUser(userdataemail);
+      const { data } = await loginUser(userdataemail);
       console.log(data);
-      if (data.password == userData.password) {
+      if (data.pw == userData.password) {
         commit('setEmail', data.email);
         commit('setPassword', data.pw);
         commit('setUuid', data.id);

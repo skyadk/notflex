@@ -124,18 +124,17 @@ export default {
           title: '비밀번호가 일지하지 않습니다.',
         });
       } else {
-        const userData = {
-          email: this.email,
-          pw: this.password,
-          nickname: this.nickname,
-          preferGenre: this.genre,
-        };
+        const userData = new FormData();
+        userData.append('email', this.email);
+        userData.append('pw', this.password);
+        userData.append('nickname', this.nickname);
+        userData.append('preferGenre', this.genre);
 
         console.log(userData);
-
         const data = await register(userData);
+        console.log(data);
 
-        if (data == 'message') {
+        if (data.status == 200) {
           this.$swal({
             position: 'top-end',
             icon: 'success',
