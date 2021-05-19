@@ -179,6 +179,7 @@ def genre_recommend(request):
             # resultsort.append(mid_filter_list)
             
             add_set = {
+                    "id" : kk[0],
                     "title" : kk[1],
                     "original_title" : kk[2],
                     "poster_path" : kk[3],
