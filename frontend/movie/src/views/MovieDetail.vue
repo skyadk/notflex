@@ -3,7 +3,7 @@
     <div class="movie-detail-image" :style="{ backgroundImage: `url(${image(movieDetail.backdrop_path)})` }"></div>
     <div class="movie-content d-flex">
       <div style="">
-        <img class="mt-2 " style="height:80vh;" :src="image(movieDetail.poster_path)" />
+        <img class="mt-2 " style="height:80vh;" :src="image(movieDetail.poster_path)" alt="" />
       </div>
       <div class="ml-4 w-75">
         <h1 class="movie-title">{{ movieDetail.title }}</h1>
@@ -30,16 +30,6 @@
           </a>
         </div>
         <div class="movie-overview mt-3">{{ movieDetail.overview }}</div>
-        <!-- <div class="mt-3"> -->
-        <!-- <b-embed
-          v-if="movieDetail.videos && movieDetail.videos.results"
-            type="iframe"
-             :key="movieDetail.videos.results[0].key"
-             
-            aspect="16by9 "
-             :src="youtube(movieDetail.videos.results[0].key)"
-            allowfullscreen
-          ></b-embed> -->
         <div v-if="movieDetail.videos && movieDetail.videos.results">
           <iframe
             v-if="movieDetail.videos.results[0]"
@@ -48,11 +38,10 @@
             width="640"
             height="360"
             :src="youtube(movieDetail.videos.results[0].key)"
-            frameborder="0"
+            frameborder="1"
             allow=" fullscreen "
           ></iframe>
         </div>
-        <!-- </div> -->
       </div>
     </div>
   </div>
