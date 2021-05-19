@@ -11,8 +11,8 @@
                   <h3 class="mb-10">{{ this.$store.state.nickname }}</h3>
                   <div class="mt-3 text">
                     <a href="/">홈</a>
-                    <a href="#">추천영화</a>
-                    <a href="#">로그아웃</a>
+                    <a href="/recommended">추천영화</a>
+                    <a click="logout">로그아웃</a>
                   </div>
                 </div>
               </div>
@@ -48,21 +48,21 @@
                 </div>
               </div>
               <div class="card mb-3 content">
-                <h2 class="m-3">영화</h2>
+                <h2 class="m-3">평가한 영화</h2>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-3">
-                      <h5>평가한 영화</h5>
-                    </div>
                     <div class="col-md-12 text-secondary">
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <br />
+                      <ViewMovieLists :movieList="view_list"></ViewMovieLists>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3 content">
+                <h2 class="m-3">선호도 분석</h2>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 text-secondary">
+                      <Chart :user_id="this.$store.state.uuid"></Chart>
                     </div>
                   </div>
                 </div>
@@ -76,7 +76,52 @@
 </template>
 
 <script>
-export default {};
+import ViewMovieLists from '../components/ViewMovieLists';
+import Chart from '@/components/Chart';
+import { viewList } from '@/api/movie';
+import { movieApi } from '../utils/movie';
+
+export default {
+  data() {
+    return {
+      view_list: [],
+      genre_list: [],
+    };
+  },
+  components: {
+    ViewMovieLists,
+    Chart,
+  },
+  async created() {
+    const { data } = await viewList(this.$store.state.uuid);
+    // console.log(data);
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].mid > 10) {
+        const res = await movieApi.movieDetail(data[i].mid);
+        // console.log(res.data);
+        this.view_list.push(res.data);
+      }
+    }
+    // const uuid = {
+    //   uid: this.$store.state.uuid,
+    // };
+    // const res = await preferPerGenre(uuid);
+    // console.log(res.data.message);
+    // this.genre_list = res.data.message;
+  },
+  methods: {
+    logout() {
+      this.$store.commit('clearEmail');
+      this.$store.commit('clearPassword');
+      this.$store.commit('clearNickname');
+      this.$store.commit('clearPreferGenre');
+      this.$store.commit('clearPreferGenre');
+      localStorage.clear();
+      sessionStorage.clear();
+      this.$router.push('/');
+    },
+  },
+};
 </script>
 
 <style scoped>

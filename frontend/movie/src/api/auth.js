@@ -9,13 +9,5 @@ function loginUser(userData) {
 function register(userData) {
   return instance.post('join_user/', userData);
 }
-//정보수정
-function editUser(userData) {
-  return instance.put(``, userData);
-}
-//회원탈퇴
-function signout() {
-  return instance.delete(`/'`);
-}
 
-export { loginUser, register, editUser, signout };
+export { loginUser, register };

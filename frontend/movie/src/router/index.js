@@ -15,19 +15,19 @@ const routes = [
     path: '/main',
     name: 'Main',
     components: { default: () => import('../views/Main.vue'), header: () => import('../views/layout/MainNavbar.vue') },
-    meta: { auth: false },
+    meta: { auth: true },
   },
   {
     path: '/detail/:id',
     name: 'Detail',
     components: { default: () => import('../views/MovieDetail.vue'), header: () => import('../views/layout/MainNavbar.vue') },
-    meta: { auth: false },
+    meta: { auth: true },
   },
   {
     path: '/search',
     name: 'Search',
     components: { default: () => import('../views/Search.vue'), header: () => import('../views/layout/MainNavbar.vue') },
-    meta: { auth: false },
+    meta: { auth: true },
   },
   {
     path: '/login',
@@ -44,11 +44,13 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     components: { default: () => import('@/views/Profile.vue'), header: () => import('../views/layout/MainNavbar.vue') },
+    meta: { auth: true },
   },
   {
     path: '/recommended',
     name: 'Recommended',
     components: { default: () => import('@/views/Recommended.vue'), header: () => import('../views/layout/MainNavbar.vue') },
+    meta: { auth: true },
   },
   {
     path: '*',

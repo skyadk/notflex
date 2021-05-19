@@ -118,7 +118,7 @@ export default {
   height: 100%;
 }
 .top {
-  margin-top: 5%;
+  margin-top: 3%;
   height: 100px;
 }
 .movie-card {
