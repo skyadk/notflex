@@ -28,7 +28,7 @@ class GetViewListSerializer(serializers.ModelSerializer):
     class Meta:
         model = View
         #fields = '__all__'
-        fields = ['id','uid_id','mid_id','point','review']
+        fields = ['id','uid_id','mid','point','review']
 
 class GetUidSerializer(serializers.ModelSerializer):
     class Meta:
