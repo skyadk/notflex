@@ -48,7 +48,7 @@ export default {
       this.$store.commit('clearPassword');
       this.$store.commit('clearNickname');
       this.$store.commit('clearPreferGenre');
-
+      this.$store.commit('clearPreferGenre');
       localStorage.clear();
       sessionStorage.clear();
     },

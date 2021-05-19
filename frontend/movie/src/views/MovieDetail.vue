@@ -7,6 +7,11 @@
       </div>
       <div class="ml-4 w-75">
         <h1 class="movie-title">{{ movieDetail.title }}</h1>
+        <div class="d-flex" @click="Evaluate">
+          <h5 class="movie-rating">평가하기</h5>
+          <star-rating id="setstar" :star-size="20" v-model="rating" :border-width="5" border-color="#d8d8d8" :rounded-corners="true"></star-rating>
+        </div>
+
         <div class="movie-information-wrapper mt-4 d-flex align-items-center">
           <div class="ml-1 genres">{{ movieDetail.release_date.split('-')[0] }}</div>
           <span class="ml-1 genres"></span>
@@ -38,7 +43,7 @@
             width="640"
             height="360"
             :src="youtube(movieDetail.videos.results[0].key)"
-            frameborder="1"
+            frameborder="1,"
             allow=" fullscreen "
           ></iframe>
         </div>
@@ -50,20 +55,38 @@
 <script>
 import { movieApi } from '../utils/movie';
 import { mapMutations } from 'vuex';
+import StarRating from 'vue-star-rating';
+import { evaluate, viewList } from '@/api/movie';
+
 export default {
   data() {
     return {
       movieDetail: {},
+      rating: 0,
+      review: '',
+      check: false,
     };
+  },
+  components: {
+    StarRating,
+  },
+  async created() {
+    const { data } = await viewList(this.$store.state.uuid);
+    // console.log(data);
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].mid == this.$route.params.id) {
+        this.rating = data[i].point;
+      }
+    }
   },
   async mounted() {
     this.SET_LOADING(true);
-    console.log(this.$route);
-    console.log(this.$route.params.id);
+    // console.log(this.$route);
+    // console.log(this.$route.params.id);
     const { id } = this.$route.params;
     const { data } = await movieApi.movieDetail(id);
     // axios 요청 보내기
-    console.log(data);
+    // console.log('detail', data);
     this.movieDetail = data;
     this.SET_LOADING(false);
     // backdro
@@ -77,17 +100,60 @@ export default {
     youtube(src) {
       return `https://www.youtube.com/embed/${src}`;
     },
+    async Evaluate() {
+      const { data } = await viewList(this.$store.state.uuid);
+      console.log(data);
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].mid == this.$route.params.id) {
+          this.check = true;
+          break;
+        } else {
+          this.check = false;
+        }
+      }
+
+      if (this.check) {
+        this.$swal({
+          position: 'top-end',
+          icon: 'error',
+          title: '이미 평가를 하셨습니다!!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        location.reload();
+      } else {
+        const userData = new FormData();
+        userData.append('uid', this.$store.state.uuid);
+        userData.append('mid', this.$route.params.id);
+        userData.append('point', this.rating);
+        userData.append('review', this.review);
+        console.log(userData);
+        const { data } = await evaluate(userData);
+        console.log(data);
+        this.$swal({
+          position: 'top-end',
+          icon: 'success',
+          title: '평가완료!!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    },
   },
 };
 </script>
 }
 
 <style>
+.vue-star-rating-rating-text {
+  display: none !important;
+}
 .movie-detail {
   /* z-index: 99; */
   position: relative;
   padding: 40px 40px;
   margin-top: 5%;
+  z-index: 0;
 }
 
 .movie-detail-image {
@@ -121,6 +187,13 @@ export default {
 }
 .movie-title {
   margin-left: 5px;
+  margin-right: 1rem;
+  color: #fff;
+}
+.movie-rating {
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 1rem;
   color: #fff;
 }
 .movie-information-wrapper {
