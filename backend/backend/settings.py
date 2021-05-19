@@ -62,7 +62,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:8000',
     'http://localhost:8080',
     'http://k4d108.p.ssafy.io',
-    'http://i4d108.p.ssafy.io:8080',
+    'http://k4d108.p.ssafy.io:9999',
 ]
 
 ROOT_URLCONF = 'backend.urls'
