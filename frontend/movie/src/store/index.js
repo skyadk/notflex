@@ -25,11 +25,11 @@ export default new Vuex.Store({
   },
   mutations: {
     //토큰
-    setToken(state, token) {
-      state.token = token;
+    setUuid(state, uuid) {
+      state.uuid = uuid;
     },
-    clearToken(state) {
-      state.token = '';
+    clearUuid(state) {
+      state.uuid = '';
     },
     //이메일
     setEmail(state, email) {

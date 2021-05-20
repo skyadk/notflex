@@ -39,12 +39,6 @@ export default {
   margin: 5%;
   overflow-x: auto;
 }
-.movie-title {
-  color: #fff;
-}
-.movie-date {
-  color: #fff;
-}
 
 .movie-card {
   margin: 12px;
@@ -63,11 +57,16 @@ export default {
 .movie-information {
   margin-top: 7px;
 }
-
+.movie-title {
+  font-weight: 1000;
+  color: #333;
+}
 .movie-date {
   font-size: 10px;
   margin-top: 5px;
-  color: #cccccc;
+  /* color: #cccccc; */
+  font-weight: 1000;
+  color: #333;
 }
 ::-webkit-scrollbar {
   width: 12px;

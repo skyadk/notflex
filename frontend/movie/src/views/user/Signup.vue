@@ -211,7 +211,6 @@ export default {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   flex-direction: column;
-  margin: 0;
   width: 100%;
 }
 .login-page-title {

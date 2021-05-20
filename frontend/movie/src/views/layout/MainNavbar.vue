@@ -4,14 +4,13 @@
       <a class="logo" href="/"><img src="@/assets/logo.png" alt="logo" class="img" /></a>
       <nav>
         <ul class="nav__links">
-          <li><a href="/">검색하기</a></li>
+          <li><a href="/main">영화목록</a></li>
           <li><a href="/recommended">추천영화</a></li>
           <li>
             <a href="/profile">{{ this.$store.state.nickname }}</a>
           </li>
         </ul>
       </nav>
-
       <div type="button" class="a-tag mr-8" @click="logout">로그아웃</div>
     </header>
   </div>
@@ -23,14 +22,13 @@ export default {
   methods: {
     logout() {
       this.$store.commit('clearEmail');
-      this.$store.commit('clearToken');
-      this.$store.commit('clearType');
       this.$store.commit('clearPassword');
       this.$store.commit('clearNickname');
       this.$store.commit('clearUuid');
+      this.$store.commit('clearPreferGenre');
       localStorage.clear();
       sessionStorage.clear();
-      this.$router.push({ name: 'Sign-In-Up' });
+      this.$router.push('/');
     },
   },
 };
