@@ -1,7 +1,7 @@
 <template>
   <div class="main-back">
     <div class="back">
-      <MovieText :text="'평가한 영화와 비슷한 장르'"></MovieText>
+      <MovieText :text="'시청 선호도 추천'"></MovieText>
       <MovieLists :movieList="view_record"></MovieLists>
       <MovieText :text="'사용자가 좋아하는 장르'"></MovieText>
       <MovieLists :movieList="prefer_genre"></MovieLists>

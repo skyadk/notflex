@@ -141,6 +141,7 @@ export default {
   background-color: #fff;
   height: 60px;
   width: 70%;
+  vertical-align: middle;
 }
 .search-btn {
   color: #fff;

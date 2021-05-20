@@ -2,11 +2,12 @@
   <div class="search">
     <div class="main-search">
       <div class="back">
-        <form @submit.prevent="onSearch">
-          <input class="border-black" v-model="keyword" placeholder="영화 제목을 입력하세요." />
-        </form>
-        <MovieText v-if="movieList" :text="'검색결과'"></MovieText>
-        <MovieLists :movieList="movieList"></MovieLists>
+        <div class="search-main">
+          <input class="search-input" type="text" placeholder="영화 제목을 입력하세요" v-model="keyword" />
+          <button class="search-btn" @click="onSearch">검색하기</button>
+        </div>
+        <MovieText v-if="movieList" class="mt-10" :text="'검색결과'" :keyword="keyword"></MovieText>
+        <MovieLists class="mt-5" :movieList="movieList"></MovieLists>
       </div>
     </div>
   </div>
@@ -65,8 +66,8 @@ export default {
 .search {
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
+  /* margin-top: 5%;
+  padding-top: 5%; */
 }
 .main-search {
   background: url(../assets/back.png) no-repeat;
@@ -80,5 +81,29 @@ export default {
   background: rgba(0, 0, 0, 0.8);
   width: 100%;
   height: 100%;
+}
+.search-main {
+  min-height: 50px !important;
+  max-width: 980px;
+  margin: 5rem auto 1rem;
+  padding-top: 5rem;
+}
+.search-input {
+  color: #000;
+  background-color: #fff;
+  height: 60px;
+  width: 70%;
+
+  vertical-align: middle;
+}
+.search-btn {
+  color: #fff;
+  background-color: #e50914;
+  vertical-align: middle;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 1.5rem;
+  height: 60px;
+  width: 20%;
 }
 </style>
