@@ -1,11 +1,12 @@
 <template>
-  <div class="h4 ml-10 pt-3 mb-4 text">{{ text }}</div>
+  <div class="h4 ml-10 pt-3 mb-4 text">{{ text }} : {{ keyword }}</div>
 </template>
 
 <script>
 export default {
   props: {
     text: String,
+    keyword: String,
   },
 };
 </script>

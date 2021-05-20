@@ -7,7 +7,7 @@
           <li><a href="/main">영화목록</a></li>
           <li><a href="/recommended">추천영화</a></li>
           <li>
-            <a href="/profile">{{ this.$store.state.nickname }}</a>
+            <a href="/profile">{{ this.$store.state.nickname }}님의 마이페이지</a>
           </li>
         </ul>
       </nav>
