@@ -18,7 +18,7 @@ export default {
   props: ['movieList'],
   data() {
     return {
-      noImage: require('../assets/error.jpg'),
+      noImage: require('../assets/noimg.png'),
     };
   },
   methods: {
