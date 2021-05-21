@@ -9,21 +9,21 @@ Infra : Docker
 
 # 사용법
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8b32be22-a86f-423d-b6fc-1f94a86ff386/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8b32be22-a86f-423d-b6fc-1f94a86ff386/Untitled.png)
+![K-009](/uploads/aa5c23feae0e3a333915962d181018fc/K-009.png)
 
 로그인후 영화 목록을 누르면 다양한 최신 영화들의 리스트가 나옴
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c36f8335-8154-4382-a043-190ddd01728b/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c36f8335-8154-4382-a043-190ddd01728b/Untitled.png)
+![K-010](/uploads/fe6d472baaa7b0df01c5d21a1738bcbc/K-010.png)
 
 추천 영화를 클릭하면
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/32f77008-8941-4887-a897-1f5efdbbceae/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/32f77008-8941-4887-a897-1f5efdbbceae/Untitled.png)
+![K-012](/uploads/b352f09405904010e4da78d3be20d3a6/K-012.png)
 
 가입시 선택한 취향과 그동안 봐왔던 영화를 기반으로 영화를 추천해줌
 
 마이페이지에서
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4b2875b8-8b58-47bb-b6a1-c0bc87e94f8d/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4b2875b8-8b58-47bb-b6a1-c0bc87e94f8d/Untitled.png)
+![K-011](/uploads/8c80f07769d31a274cb54482138d3ad4/K-011.png)
 
 그동안 봐웠던 영화에 대한 선호도를 알 수 있음
 
