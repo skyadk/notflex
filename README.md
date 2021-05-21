@@ -34,11 +34,15 @@ ec2 접속후
 관리자 명: ubuntu
 
 프론트 도커 빌드 및 실행
+
 docker build --tag frontimage s04p31d108/frontend/movie/
+
 docker run -dit -p 80:80 --name frontsite frontimage
 
 백 도커 빌드 및 실행
+
 docker build --tag backimage s04p31d108/backend/
+
 docker run -dit -p 8000:8000 --name backsite backimage
 
 DB파일은 backend 폴더안에 있음
